@@ -2,6 +2,7 @@
 
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import React, { useState } from "react";
+import BeautifulDnd from "@/components/BeautifulDnd";
 
 
 interface DraggableItem {
@@ -41,87 +42,9 @@ export default function Home() {
 
     return (
         <div className="h-full bg-gray-100 dark:bg-gray-800">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4 shadow-lg">
-                <DragDropContext onDragEnd={onDragEnd}>
-                    <div className="p-4 border-r">
-                        <h2 className="text-lg font-bold">组件库</h2>
-                        <Droppable droppableId="droppable-1" isDropDisabled={true}>
-                            {(provided, snapshot) => (
 
-                                    <div
-                                        className={`p-4 bg-white dark:bg-gray-700 shadow-lg rounded-md`}
-                                        ref={provided.innerRef}
-                                        {...provided.droppableProps}
-                                    >
-                                        {items.map((item, index) => (
-                                            <Draggable
-                                                key={item.id}
-                                                draggableId={item.id}
-                                                index={index}
-                                            >
-                                                {(provided, snapshot) => (
-                                                    <>
-                                                        <div
-                                                            className="p-2 my-2 mb-2 bg-yellow-600 shadow-md rounded-md"
-                                                            ref={provided.innerRef}
-                                                            {...provided.draggableProps}
-                                                            {...provided.dragHandleProps}
-                                                        >
-                                                            <h4>{item.content}</h4>
-                                                        </div>
-                                                        {
-                                                            snapshot.isDragging && (
-                                                                <>
-                                                                    <div className="p-2 my-2 mb-2 bg-yellow-600 shadow-md rounded-md">
-                                                                        <h4>Clone WHEN Dragging.</h4>
-                                                                    </div>
-                                                                </>
-                                                            )
-                                                        }
-                                                    </>
-                                                )}
-                                            </Draggable>
-                                        ))}
-                                        {provided.placeholder}
-                                    </div>
-                            )}
-
-                        </Droppable>
-                    </div>
-                    <div className="md:col-span-4 bg-white dark:bg-gray-700 shadow-lg p-4 rounded-md">
-                        <h2 className="text-xl font-bold mb-4 text">Curriculum Schedule</h2>
-                        <Droppable droppableId="droppable-2">
-                            {(provided, snapshot) => (
-                                <div
-                                    ref={provided.innerRef}
-                                    {...provided.droppableProps}
-                                >
-                                    {schedule.map((item, index) => (
-                                        <Draggable
-                                            key={item.id}
-                                            draggableId={item.id}
-                                            index={index}
-                                        >
-                                            {(provided, snapshot) => (
-                                                <div
-                                                    className="p-2 my-2 mb-2 bg-yellow-600 shadow-md rounded-md"
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                >
-                                                <h4>{item.content}</h4>
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                    ))}
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                    </div>
-                </DragDropContext>
-            </div>
-
+            <h1>BeautifulDnd Demo</h1>
+            <BeautifulDnd/>
         </div>
     );
 }
